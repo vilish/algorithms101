@@ -4,7 +4,8 @@ import exercise.Stack.Node;
 
 public class Queue {
 
-    public Node head;
+    private Node head; // remove things here
+    private Node tail; // add things here
 
     private int size;
 
@@ -18,19 +19,30 @@ public class Queue {
     }
 
     public void add(int data) {
-        if (head == null) {
-            head = new Node(data);
+
+        Node newNode = new Node(data);
+
+
+        // if tail is empty, queue should be empty
+        if (tail == null) {
+            tail = newNode;
+            head = tail;
             size++;
             return;
         }
 
-        Node node = head;
 
+        // start from head and reach at tail
+        Node node = head;
         while (node.next != null) {
             node = node.next;
         }
+
+        // now 'node' should be at tail
+        node.next = new Node(data);  // add node
+        tail = node; // reset tail
+
         size++;
-        node.next = new Node(data);
 
     }
 
@@ -43,16 +55,10 @@ public class Queue {
             throw new IllegalStateException("Empty Queue");
         }
 
-//        if(head.data == )
         head = head.next;
-//        Node node = head;
-//
-//        while (node.next != null) {
-//            node = node.next;
-//        }
-//
-//        int data = node.data;
-//        node = null;
+        if (head == null) {
+            tail = null;
+        }
         size--;
         return;
 

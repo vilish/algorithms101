@@ -22,13 +22,6 @@ public class Stack {
     }
 
     public void push(int data) {
-
-        if (head == null) {
-            head = new Node(data);
-            size++;
-            return;
-        }
-
         Node node = new Node(data);
         node.next = head;
         head = node;
