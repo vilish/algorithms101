@@ -4,51 +4,70 @@ import exercise.Stack.Node;
 
 public class Queue {
 
-	public Node head;
+    public Node head;
 
-	private int size;
+    private int size;
 
-	public class Node {
-		int data;
-		Node next;
+    public class Node {
+        int data;
+        Node next;
 
-		public Node(int data) {
-			this.data = data;
-		}
-	}
+        public Node(int data) {
+            this.data = data;
+        }
+    }
 
-	public void add(int data) {
-		if (head == null) {
-			head = new Node(data);
-		}
+    public void add(int data) {
+        if (head == null) {
+            head = new Node(data);
+            size++;
+            return;
+        }
 
-		Node node = head;
+        Node node = head;
 
-		while (node.next != null) {
-			node = node.next;
-		}
+        while (node.next != null) {
+            node = node.next;
+        }
+        size++;
+        node.next = new Node(data);
 
-		node.next = new Node(data);
+    }
 
-	}
+    /**
+     * should remove the first element
+     */
+    public void remove() {
 
-	public int remove() {
+        if (head == null) {
+            throw new IllegalStateException("Empty Queue");
+        }
 
-		if (head == null) {
-			throw new IllegalStateException("Empty Queue");
-		}
+//        if(head.data == )
+        head = head.next;
+//        Node node = head;
+//
+//        while (node.next != null) {
+//            node = node.next;
+//        }
+//
+//        int data = node.data;
+//        node = null;
+        size--;
+        return;
 
-		Node node = head;
+    }
 
-		while (node.next != null) {
-			node = node.next;
-		}
+    public int peek() {
+        if (head == null) {
+            throw new IllegalStateException("Empty Queue");
+        }
+        return head.data;
 
-		int data = node.data;
-		node = null;
+    }
 
-		return data;
-
-	}
+    public int size() {
+        return size;
+    }
 
 }
